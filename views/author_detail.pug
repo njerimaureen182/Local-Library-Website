@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    br
+    br
+    h2 Author: #{author.name}
+    br
+
+    p(class="text-muted font-weight-bold") #{author.lifespan}
+    br
+
+    div(class="ml-2 mt-2")
+        h4 Books
+        br
+        dl
+            each book in author_books
+                dt
+                    a(href=book.url style="color:cadetblue") #{book.title}
+                    p
+                dd #{book.summary}
+
+            else
+                p This author has no books.
+
+        hr
+        br
+        p
+          a.alert.alert-danger.font-weight-bold(href=author.url + '/delete') Delete author 

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    br
+    br
+    h2 Genre: #{genre.name}
+    br
+
+    div(class="ml-3 mt-3")
+        h3(class="genre-title-one") Books
+        br
+
+        dl
+            each book in genre_books
+                dt(class="genre-title-two mb-2")
+                    a(href=book.url) #{book.title}
+                
+                dd #{book.summary}
+
+            else
+                p This genre has no books.

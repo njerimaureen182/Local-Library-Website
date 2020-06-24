@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+body {
+  padding: 10px;
+  min-height: 100vh;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: .05rem;
+  box-sizing: border-box;
+  background-color: linen;
+}
+
+.sidebar-nav{
+  margin-top: 35px;
+  padding: 10px;
+  list-style: none;
+}
+
+.sidebar-nav li a{
+  font-weight: bold;
+  color: sienna;
+  font-size: 1.01rem;
+}
+
+.record-list li{
+  color: cadetblue; 
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.book-links li a,
+.bookinstance-links li a,
+.author-links li a,
+.genre-links li a{
+  color: cadetblue;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.genre-title-two a{
+  color: cadetblue;
+  font-size: 1.1rem;
+}
+
+.genre-title-one{
+  color: sienna;
+}
+
+.book-links li,
+.bookinstance-links li,
+.author-links li,
+.genre-links li,
+.genre-title-two a{
+  margin-top: 20px;
+}
+
+.genre-form label,
+.author-form label,
+.book-form label{
+  font-size: 1.1rem;
+}
+.genre-form input,
+.author-form input,
+.book-form input,
+.book-form textarea{
+  letter-spacing: .07rem;
+  padding: 1.5rem ;
+  border: 2px solid cadetblue;
+  font-size: 1rem;
+  box-shadow: 2px 1px 1px rgba(0, 0, 0, .5);
+}
+
+
+button[type='submit']{
+  font-weight: bold;
+  letter-spacing: .07rem;
+  padding: 1.2rem;
+  color: rgba(0, 0, 0, .8);
+  font-size: .9rem;
+}

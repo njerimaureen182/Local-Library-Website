@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  br
+  br
+  h2 Title: #{book.title}
+  br
+  
+  p #[strong(class="text-muted font-weight-bold") Author: ] 
+    a(href=book.author.url style='color:sienna;font-weight:bold') #{book.author.name}
+  p #[strong(class="text-muted font-weight-bold") Summary: ] #{book.summary}
+  p #[strong(class="text-muted font-weight-bold") ISBN: ] #{book.isbn}
+  p #[strong(class="text-muted font-weight-bold") Genre: ]&nbsp;
+    each val, index in book.genre
+      a(href=val.url style='color:sienna;font-weight:bold') #{val.name}
+      if index < book.genre.length - 1
+        |, 
+  
+  div(class='ml-1 mt-4')
+    br
+    h4 Copies
+    
+    each val in book_instances
+      hr
+      if val.status=='Available'
+        p.bg-success.font-weight-bold.badge.badge-pill.p-2 #{val.status}
+      else if val.status=='Maintenance'
+        p.bg-danger.font-weight-bold.badge.badge-pill.p-2 #{val.status}
+      else
+        p.bg-warning.font-weight-bold.badge.badge-pill.p-2 #{val.status} 
+      p #[strong.text-muted.font-weight-bold Imprint:] #{val.imprint}
+      if val.status!='Available'
+        p #[strong.text-muted.font-weight-bold Due back:] #{val.due_back_formatted}
+      p #[strong.text-muted.font-weight-bold Id:]&nbsp;
+        a(href=val.url style="color:cadetblue") #{val._id}
+ 
+    else
+      p There are no copies of this book in the library.

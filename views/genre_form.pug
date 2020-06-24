@@ -1,0 +1,42 @@
+//- extends layout
+
+//- block content
+//-     br
+//-     br
+//-     h1 #{title}
+//-     br
+
+//-     form(action="", method="post")
+//-         div.form-group
+//-             label(for="name") Genre: 
+//-             p
+//-             input#name.form-control(type="text", name="name" placeholder='Fantasy, Poetry, e.t.c.' value=(undefined===genre?'':genre.name))
+//-             br
+//-         button.btn.btn-primary(type="submit") Submit
+    
+//-     if errors
+//-         ul
+//-             for error in errors
+//-                 li != error.msg 
+
+extends layout
+
+block content
+  br
+  br
+  h2 #{title}
+  br
+
+  form(method='POST' action='')
+    div.form-group.w-50.genre-form
+      label.text-muted.font-weight-bold(for='name') Genre:
+      p
+      input#name.form-control(type='text', placeholder='Fantasy, Poetry etc.' name='name' value=(undefined===genre ? '' : genre.name) required='true')
+      br
+    button.btn.btn-primary(type='submit') Submit
+    p
+
+  if errors 
+   span
+    for error in errors
+     p!= error.msg

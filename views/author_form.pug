@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  br
+  br
+  h2 #{title}
+  br
+
+  form(action="", method="POST")
+    div.form-group.author-form.w-50
+      label.font-weight-bold.text-muted(for="first_name") First Name:
+      p
+      input#first_name.form-control(type="text", name="first_name" placeholder='First Name...' required='true' 
+      value=(undefined===author ? '' : author.first_name))
+      br
+      br
+      label.font-weight-bold.text-muted(for="family_name") Family Name:
+      p
+      input#family_name.form-control(type="text", name="family_name" placeholder='Family Name(Surname)...' required='true' value=(undefined===author ? '' : author.family_name))
+      br
+
+    div.form-group.author-form.w-50
+      label.font-weight-bold.text-muted(for="date_of_birth") Date of Birth:
+      p
+      input#date_of_birth.form-control(type="date", name="date_of_birth" 
+      value=(undefined===author ? '' : author.date_of_birth))
+      
+    br
+
+    div.form-group.author-form.w-50
+      label.font-weight-bold.text-muted(for="date_of_death") Date of Death:
+      input#date_of_death.form-control(type="date", name="date_of_death" value=(undefined===author ? '' : author.date_of_death))
+    br
+    
+    button.btn.btn-primary(type="submit") Submit
+    br
+    br
+
+  if errors
+    span
+      for error in errors
+        p!=error.msg

@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+  br
+  br
+  h2 #{title}: #{author.name}
+  br
+  p.text-muted.font-weight-bold #{author.lifespan}
+  
+
+  if author_books.length
+    p.alert.alert-danger.font-weight-bold.w-75 #[em Delete the following books before attempting to delete this author.]
+
+    div.mt-4
+      h4 Books
+      br
+      dl
+        each book in author_books
+          dt
+            a(href=book.url) #{book.title}
+            
+          dd.mt-2 #{book.summary}
+  else
+    p.text-danger.font-weight-bold Do you really want to delete this author?
+
+    form(action="", method="post")
+      div.form-group
+        input#authorid.form-control(type="hidden", name="authorid" required='true' value=authorid)
+        br
+        button.btn.btn-primary(type="submit") Submit

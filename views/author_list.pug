@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    br
+    br
+    h2= title
+    br
+
+    ul(class="author-links")
+        each author in author_list
+            li
+                a(href=author.url) #{author.name}
+                //- |   (#{author.lifespan_dob} - #{author.lifespan_dod})
+                |   (#{author.lifespan})
+
+        else
+            li There are no authors

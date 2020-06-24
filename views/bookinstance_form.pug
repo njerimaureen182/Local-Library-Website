@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  br
+  br
+  h2=title
+  br
+
+  form(action="", method="post")
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="book") Book:
+      p
+      select#book.form-control(name="book" type='select' placeholder='Select book' required='true')
+        -book_list.sort(function(a,b) { let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return(textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for book in book_list
+          if bookinstance
+            option(value=book._id selected=(bookinstance.book.toString() == book._id.toString() ? 'selected' : false)) #{book.title}
+          else
+            option(value=book._id) #{book.title}
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="imprint") Imprint:
+      p
+      input#imprint.form-control(type="text", name="imprint" placeholder='Publisher and date information' required='true' value=(undefined===bookinstance ? '' : bookinstance.imprint))
+
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="due_back") Date when book available:
+      p
+      input#due_back.form-control(type="date", name="due_back" value=(undefined===bookinstance ? '' : book.due_back))
+
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="status") Status:
+      p
+      select#status.form-control(name="status" type='select' placeholder='Select status' required='true')
+        option(value="Maintenance") Maintenance
+        option(value="Available") Available
+        option(value="Loaned") Loaned
+        option(value="Reserved") Reserved
+
+    br
+
+    button.btn.btn-primary(type="submit") Submit
+
+    br
+    br

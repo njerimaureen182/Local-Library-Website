@@ -1,0 +1,57 @@
+extends layout
+
+block content
+  br
+  br
+  h2=title
+  br
+
+  form(action="", method="post")
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="title") Title:
+      p
+      input#title.form-control(type="text", name="title" placeholder='Name of book' required='true' value=(undefined===book ? '' : book.title))
+
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="author") Author:
+      p
+      select#author.form-control(name="author" type='select' placeholder='Select author' required='true')
+        - authors.sort(function (a,b) { let textA = a.family_name.toUpperCase(); let textB = b.family_name.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;});
+        for author in authors
+          if book
+            option(value=author._id selected=(author._id.toString()==book.author ? 'selected':false)) #{author.name}
+          else
+            option(value=author._id) #{author.name}
+
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="summary") Summary:
+      p
+      textarea#summary.form-control(name="summary", type='textarea' placeholder='Summary', rows="3" 
+      required='true') #{undefined===book ? '' : book.summary}
+    
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="isbn") ISBN:
+      p 
+      input#isbn.form-control(type="text", name="isbn" placeholder='ISBN13' value=(undefined===book ? '' : book.isbn) required='true')
+
+    br
+
+    div.form-group.book-form.w-50
+      label.font-weight-bold.text-muted(for="genre") Genre:
+      p
+      div
+        for genre in genres
+          div(style='display:inline;margin-right:17px;')
+            input.checkbox-input(type="checkbox", name="genre" id=genre._id value=genre._id checked=genre.checked)
+            label(for=genre._id) #{genre.name}
+    
+    button.btn.btn-primary(type="submit") Submit
+
+    br
+    br
